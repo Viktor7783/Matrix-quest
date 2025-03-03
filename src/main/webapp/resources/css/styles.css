@@ -1,0 +1,122 @@
+
+body.startPage {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/Matrix1.jpg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.drop_out {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/game_over.gif');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.wake_up {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/game_over.gif');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.victory {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/fly_victory.gif');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.choose_tablet {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/Tabletki.jpg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.welcome {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/boatbest.jpeg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.release_mind {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/morfeus_neo.jpg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.go_to_pifia {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/pifi.jpeg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+body.save_morfius {
+    font-family: Arial, sans-serif;
+    background-image: url('../images/morfeus_agent.jpg');
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.snippet-container { /*Задаём стили для элемента с классом .snippet-container*/
+    background-color: rgba(0, 0, 0, 0.8); /*Задаёт фоновый цвет для элемента: 0, 0, 0 — чёрный цвет (значения красного, зелёного и синего каналов); 0.8 — прозрачность фона (80%, где 1 — полностью непрозрачный, а 0 — полностью прозрачный).*/
+    color: #00ff00; /*Задаёт цвет текста внутри элемента: #00ff00 — это зелёный цвет в HEX-формате: ЯРКО-ЗЕЛЁНЫЙ*/
+    padding: 1rem;
+    /*Задаёт внутренние отступы (пространство между содержимым элемента и его границами).2rem — это 2 единицы относительно размера шрифта корневого элемента (<html>). Обычно 1rem = 16px, поэтому 2rem ≈ 32px.
+     Итог: внутри контейнера будет достаточно места вокруг текста.*/
+    border-radius: 50px;
+    /*Задаёт скругление углов элемента. 10px — радиус скругления в пикселях.
+     Итог: углы контейнера будут слегка закруглёнными.*/
+    margin-top: 20vh;
+    width: 60%; /* ширина контейнера */
+    /*Задаёт внешний отступ сверху. 20vh — это 20% от высоты видимой области экрана (viewport height).
+     Итог: контейнер будет смещён вниз на 20% высоты экрана.*/
+}
+
+.transparent-input { /* Стили для прозрачного и узкого поля ввода */
+    background-color: transparent !important; /* для повышения приоритета стиля*/
+    border: 1px solid #00ff00 !important;
+    color: #00ff00 !important;
+    width: 20ch; /* Ограничение ширины на 20 символов */
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.transparent-input::placeholder { /*::placeholder — это псевдоэлемент, который позволяет стилизовать текст-подсказку (плейсхолдер) внутри поля ввода.*/
+    color: #00ff00; /*Задаёт цвет текста плейсхолдера:#00ff00 — это ярко-зелёный цвет в HEX-формате.Итог: текст-подсказка будет зелёным*/
+    opacity: 0.7; /*Задаёт прозрачность текста плейсхолдера.0.7 — это 70% непрозрачности (где 1 — полностью непрозрачный, а 0 — полностью прозрачный).Итог: текст-подсказка будет слегка прозрачным.*/
+}
+
+
+/* Стили для контейнера с id="left" */
+#left {
+    position: fixed; /* Фиксируем контейнер на странице */
+    bottom: 20px; /* Отступ снизу */
+    left: 350px; /* Отступ слева */
+    width: 33ch; /* Ширина контейнера в 18 символов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для эффекта "поднятия" */
+    z-index: 1000; /* Чтобы контейнер был поверх других элементов */
+    font-family: Arial, sans-serif; /* Шрифт, как в .container */
+    font-size: 14px; /* Размер шрифта */
+    line-height: 1.5; /* Межстрочный интервал */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+    max-height: 170px;
+}
+
+#right {
+    position: fixed; /* Фиксируем контейнер на странице */
+    bottom: 20px; /* Отступ снизу */
+    right: 350px; /* Отступ справа */
+    width: 33ch; /* Ширина контейнера в 18 символов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для эффекта "поднятия" */
+    z-index: 1000; /* Чтобы контейнер был поверх других элементов */
+    font-family: Arial, sans-serif; /* Шрифт, как в .container */
+    font-size: 14px; /* Размер шрифта */
+    line-height: 1.5; /* Межстрочный интервал */
+    max-height: 250px; /* Ограничиваем высоту контейнера */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+}
