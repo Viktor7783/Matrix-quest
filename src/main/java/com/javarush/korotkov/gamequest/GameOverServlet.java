@@ -1,7 +1,7 @@
 package com.javarush.korotkov.gamequest;
 
 
-import com.javarush.korotkov.gamequest.service.ProvidingTextService;
+import com.javarush.korotkov.gamequest.service.ProvidingDataService;
 import com.javarush.korotkov.gamequest.service.StatisticService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,17 +24,17 @@ public class GameOverServlet extends HttpServlet {
         StatisticService statisticService = (StatisticService) session.getAttribute("statisticService");
         statisticService.setPlayerStatus(DEAD);
 
-        ProvidingTextService textService = (ProvidingTextService) session.getAttribute("textService");
-        if (textService.getCounter() > 5) { // Если выиграли
+        ProvidingDataService dataService = (ProvidingDataService) session.getAttribute("dataService");
+        if (dataService.getCounter() > 5) { // Если выиграли
             statisticService.setPlayerStatus(WINNER);
-            request.setAttribute("gameText", textService.getGamePlayText(8));
-            request.setAttribute("gameOver", textService.getGamePlayImageName(8));
-        } else if (textService.getCounter() == 1) { // Если съели в начале синюю таблетку
-            request.setAttribute("gameText", textService.getGamePlayText(6));
-            request.setAttribute("gameOver", textService.getGamePlayImageName(6));
+            request.setAttribute("gameText", dataService.getGamePlayText(8));
+            request.setAttribute("gameOver", dataService.getGamePlayImageName(8));
+        } else if (dataService.getCounter() == 1) { // Если съели в начале синюю таблетку
+            request.setAttribute("gameText", dataService.getGamePlayText(6));
+            request.setAttribute("gameOver", dataService.getGamePlayImageName(6));
         } else { // Если проиграли по ходу игры
-            request.setAttribute("gameText", textService.getGamePlayText(7));
-            request.setAttribute("gameOver", textService.getGamePlayImageName(7));
+            request.setAttribute("gameText", dataService.getGamePlayText(7));
+            request.setAttribute("gameOver", dataService.getGamePlayImageName(7));
         }
 
         request.setAttribute("playerStatistic", statisticService.getPlayerStatistic());

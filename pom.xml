@@ -14,7 +14,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>23</maven.compiler.target>
         <maven.compiler.source>23</maven.compiler.source>
-        <junit.version>5.11.4</junit.version>
+        <junit.version>5.12.0</junit.version>
+        <jakarta.servlet.version>6.0.0</jakarta.servlet.version>
+        <lombok.version>1.18.36</lombok.version>
+        <jstl.version>3.0.2</jstl.version>
     </properties>
 
     <dependencies>
@@ -28,7 +31,7 @@
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>3.0.2</version>
+            <version>${jstl.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
@@ -50,16 +53,18 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.0.0</version>
+            <version>${jakarta.servlet.version}</version>
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -73,10 +78,49 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
+            <!--Add the maven-compiler-plugin explicitly to ensure Java 23 compatibility:-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <!--Эта конфигурация:
+                     Явно указывает компилятору использовать Lombok как процессор аннотаций
+                     Гарантирует, что Lombok будет обрабатывать аннотации на этапе компиляции
+                     Обеспечивает генерацию кода (геттеры, сеттеры и т.д.) до завершения компиляции
+                     Позволяет избежать проблем с порядком обработки аннотаций
+                     Делает процесс компиляции более надёжным и предсказуемым-->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!--Этот плагин отвечает за запуск модульных тестов во время сборки проекта-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>

@@ -1,6 +1,6 @@
 package com.javarush.korotkov.gamequest;
 
-import com.javarush.korotkov.gamequest.service.ProvidingTextService;
+import com.javarush.korotkov.gamequest.service.ProvidingDataService;
 import com.javarush.korotkov.gamequest.service.StatisticService;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -20,13 +20,13 @@ public class PlayGameServlet extends HttpServlet {
         HttpSession session = request.getSession();
         StatisticService statisticService = (StatisticService) session.getAttribute("statisticService");
         statisticService.increasePlayerScore();
-        ProvidingTextService textService = (ProvidingTextService) session.getAttribute("textService");
-        String nextText = textService.getNextText();
-        if (textService.getCounter() > 5) { //Если выиграл
+        ProvidingDataService dataService = (ProvidingDataService) session.getAttribute("dataService");
+        String nextText = dataService.getNextText();
+        if (dataService.getCounter() > 5) { //Если выиграл
             context.getRequestDispatcher("/gameOver").forward(request, resp);
         } else {
             session.setAttribute("gameText", nextText);
-            session.setAttribute("gameImage", textService.getImageName());
+            session.setAttribute("gameImage", dataService.getImageName());
             context.getRequestDispatcher("/playGame.jsp").forward(request, resp);
         }
     }
